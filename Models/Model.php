@@ -2,14 +2,15 @@
     
 require 'dbConf.php';
 
-class dbConnector {
+class Model {
     public $db;
     private $connected = false;
     
     function __construct(){
-        $conf = dbConf::$dbConf;
+        $conf = dbConfig::$dbConf;
         if($this->connected){ return true;  }
         try{
+            echo'--connection to database---';
             $pdo = new  PDO('mysql:host='.$conf['host'].';dbname='.$conf['database'].';',$conf['login'],$conf['password'],
                            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
             );
@@ -20,15 +21,22 @@ class dbConnector {
         }
     }
     
-    public function find($req, $table){
+    public function findQuery($cond, $table){
         $sql = 'SELECT * FROM '.$table.' as '.'Posts';
-        if(isset($req['conditions'])){
-            $sql .= ' WHERE '.$req['conditions'];
+        if(isset($cond['conditions'])){
+            $sql .= ' WHERE '.$cond['conditions'];
         }
-        $pre = $this->db->prepare($sql);
+        print_r($sql);
+        $this->sendQuery();
+    }
+    
+    public function sendQuery(){
+        $pre = $db->prepare($sql);
         $pre->execute();
         return $pre->fetchAll(PDO::FETCH_OBJ);
     }
     
 }
+
+//require 'queryPrototypes.php';
 ?>
