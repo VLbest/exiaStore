@@ -1,20 +1,22 @@
 <?php
-define('ROOT', dirname(__FILE__));
 define('DS', DIRECTORY_SEPARATOR);
-session_start();
-include 'Controllers/Controller.php';
-include 'Models/Model.php';
-$controller = new Controller();
+define('ROOT', dirname(__FILE__));
+define('CORE', ROOT.DS.'core');
 
-include 'Views/header.php';
+require CORE.DS.'includes.php';
 
-if(!empty($_GET['page']) AND is_file('Controllers'.DS.$_GET['page'].'Controller'.'.php')){
+$dispatcher = new Dispatcher();
+
+require 'Views'.DS.'header.php';
+
+if(!empty($_GET['page'])){
     $name = $_GET['page'];
-    $controller->loadModel($name);
+    $controller = $dispatcher->loadController($name);
+
 }else{
-    include('Controllers/e404.php');
+    
 }
 
-include 'Views/footer.php';
+require 'Views'.DS.'footer.php';
 
 ?>
