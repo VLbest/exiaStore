@@ -2,9 +2,9 @@
 class dbConfig{
     static $dbConf = array(
         'host' => 'localhost',
-        'database' => 'mvsite',
+        'database' => 'exiastore',
         'login' => 'root',
-        'password' => 'liliput'  
+        'password' => ''  
     );
 }
 ?>

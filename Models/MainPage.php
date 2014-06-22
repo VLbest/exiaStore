@@ -1,5 +1,5 @@
 <?php
-class UserPageModel extends Model{
+class MainPageModel extends Model{
     
     function __construct(){
         parent::__construct();

@@ -1,7 +1,7 @@
 <?php
 class Controller{
     public $model;
-    public $view;
+    private $vars = array();
     
     function __construct(){
         echo '</br> ***Controller loaded*** </br>';
@@ -18,15 +18,17 @@ class Controller{
         }
     }
     
-    function loadView($name){
+    function loadView($name, $dbAnswer=null){
         $name = ucfirst($name);
         $ClassName = $name.'View';
         $file = ROOT.DS.'Views'.DS.$name.'.php';
         if(is_file($file)){
+            $data = $dbAnswer;
             require $file;
-            $this->view = new $ClassName();
         }else{
         }
-    } 
+    }
+    
+    
 }
 ?>

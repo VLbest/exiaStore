@@ -1,7 +1,1 @@
-<?php
-class UserPageView{
-    function __construct(){
-        echo '</br> ***UserPageView loaded*** </br>';
-    }
-}
-?>
+<h1>USER PAGE</h1>
